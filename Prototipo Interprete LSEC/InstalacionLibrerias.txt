@@ -1,0 +1,36 @@
+Manual de Instalación de la arquitectura del Interprete de LSEC
+
+1. Instalar anaconda enviroment
+https://www.anaconda.com/
+
+2. Instalar librerías necesarias para correr el Interprete de LSEC
+
+version de python: 3.6
+
+- pip install gTTS
+version referencia: 2.4.2
+
+- pip install imutils
+version referencia: 0.5.4
+
+- pip install mediapipe
+version referencia: 0.8.3
+
+- pip install numpy
+version referencia: 1.19.2
+
+- pip install opencv-python
+version referencia: 4.5.5.64
+
+- pip install pillow
+version referencia: 8.4.0
+
+- pip install playsound
+version referencia: 1.2.2
+
+- pip install tensorflow 
+version referencia: 2.1.0
+
+- pip install tk
+version referencia: tk-0.1.0
+
