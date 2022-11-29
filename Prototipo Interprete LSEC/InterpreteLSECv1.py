@@ -7,9 +7,9 @@ import Utils as utils
 import mediapipe as mp
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 from PIL import Image
 from PIL import ImageTk
-from tkinter import filedialog
 from gtts import gTTS
 from keras.models import load_model
 from playsound import playsound
@@ -252,14 +252,9 @@ class Page1(tk.Frame):
         print('Realizando predicción.....')
         video_info = np.array(videos_salida)
         prediccion = np.argmax(modelo.predict(video_info))
-        if(predic == 0):
-            print('Frase: ',frases[prediccion])
-            lblInfoVideoPath1.configure(text=frases[prediccion])
-            s = gTTS(frases[prediccion], lang='es', tld='com.mx')
-        else:
-            print('Frase: ',frases[predic-1])
-            lblInfoVideoPath1.configure(text=frases[predic-1])
-            s = gTTS(frases[predic-1], lang='es', tld='com.mx')
+        print('Frase: ',frases[prediccion])
+        lblInfoVideoPath1.configure(text=frases[prediccion])
+        s = gTTS(frases[prediccion], lang='es', tld='com.mx')
         s.save('audio_frase.mp3')
         playsound('audio_frase.mp3')
         os.remove('cam_video.mp4')
@@ -276,7 +271,7 @@ class Page1(tk.Frame):
         btnAbrir.grid(column=0, row=0, padx=5, pady=5)
         
         btnIniciar = ttk.Button(self, text="Iniciar grabación", width=25, 
-        command = lambda : self.iniciar_grabacion())
+        command = lambda : self.iniciar_grabacion(), state= DISABLED)
         btnIniciar.grid(column=1, row=0, padx=5, pady=5)
         
         btnFinalizar = ttk.Button(self, text="Finalizar grabación", width=25,
@@ -421,17 +416,9 @@ class Page2(tk.Frame):
         video_info = np.array(videos_salida)
         prediccion = np.argmax(modelo.predict(video_info))
         #Split
-        x = video_path.split('/')
-        num = int(x[-1].split('.')[0])
-        pred = int(x[-2].split('_')[1])-1
-        if(num % 2 == 0):
-            lblInfoVideoPath.configure(text=frases[pred])
-            print('Frase: ',frases[pred])
-            s = gTTS(frases[pred], lang='es', tld='com.mx')
-        else:
-            lblInfoVideoPath.configure(text=frases[prediccion])
-            print('Frase: ',frases[prediccion])
-            s = gTTS(frases[prediccion], lang='es', tld='com.mx')
+        lblInfoVideoPath.configure(text=frases[prediccion])
+        print('Frase: ',frases[prediccion])
+        s = gTTS(frases[prediccion], lang='es', tld='com.mx')
         s.save('audio_frase.mp3')
         playsound('audio_frase.mp3')
         os.remove('audio_frase.mp3')
